@@ -26,7 +26,7 @@ window.onload = function() {
                 break;
         }
     } else {
-        die ("Error: previousVisitNum not found");
+        console.error("Error: previousVisitNum not found");
     }
 };
 
@@ -45,15 +45,15 @@ document.addEventListener('DOMContentLoaded', function(){
         event.preventDefault();
 
         // Check if names are set
-        nameFirstArray = document.getElementsByName('nameFirst[]');
-        nameLastArray = document.getElementsByName('nameLast[]');
+        var nameFirstArray = document.getElementsByName('nameFirst[]');
+        var nameLastArray = document.getElementsByName('nameLast[]');
         if(nameFirstArray[0].value.trim() === "" || nameLastArray[0].value.trim() === "") {
             alertUser("Error: First and last name are required.", "red");
             return;
         };
 
-        // Check if additonal names are set (if first name is set, last name must be set)
-        for (i = 1; i < nameFirstArray.length; i++) {
+        // Check if additional names are set (if first name is set, last name must be set)
+        for (var i = 1; i < nameFirstArray.length; i++) {
             if (nameFirstArray[i].value.trim() !== "" && nameLastArray[i].value.trim() === "") {
                 alertUser("Error: One of the additional people has a first name, but not a last name.", "red");
                 return;
@@ -179,27 +179,52 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // Update the number of people
         numPeopleField.value = numPeople;
+
+        // Scroll the new fields into view on small screens
+        divNew.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (input1) {
+            input1.focus({ preventScroll: true });
+        }
     });
 
 
 });
 
-// Function to display an alert message for a short time
-function alertUser(message, color, showForMS=5000) {
+// Function to display a toast-style alert message
+function alertUser(message, color, showForMS) {
+    showForMS = showForMS || 5000;
+
     var alertBox = document.createElement('div');
     alertBox.textContent = message;
     alertBox.style.position = 'fixed';
-    alertBox.style.left = '50%';
-    alertBox.style.top = '50%';
-    alertBox.style.transform = 'translate(-50%, -50%)';
+    alertBox.style.left = '12px';
+    alertBox.style.right = '12px';
+    alertBox.style.top = '12px';
     alertBox.style.backgroundColor = color;
     alertBox.style.color = 'white';
-    alertBox.style.padding = '20px';
+    alertBox.style.padding = '16px 20px';
+    alertBox.style.borderRadius = '12px';
     alertBox.style.zIndex = '1000';
+    alertBox.style.fontSize = '18px';
+    alertBox.style.fontWeight = '600';
+    alertBox.style.textAlign = 'center';
+    alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+    alertBox.style.cursor = 'pointer';
+    alertBox.style.transition = 'opacity 0.3s ease';
     document.body.appendChild(alertBox);
 
+    // Tap to dismiss
+    alertBox.addEventListener('click', function() {
+        alertBox.style.opacity = '0';
+        setTimeout(function() { alertBox.remove(); }, 300);
+    });
+
+    // Auto-dismiss after timeout
     setTimeout(function() {
-        alertBox.remove();
+        if (alertBox.parentNode) {
+            alertBox.style.opacity = '0';
+            setTimeout(function() { alertBox.remove(); }, 300);
+        }
     }, showForMS);
 
     return;

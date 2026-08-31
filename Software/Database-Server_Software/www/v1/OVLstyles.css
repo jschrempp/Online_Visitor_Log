@@ -1,222 +1,209 @@
 /* -- basic css for the OLV form -- */
+/* Mobile-first responsive styles */
+
+/* Ensure all elements size predictably */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
-    width: 800px;
-    margin: 1px 10px 1px 10px;
+    margin: 0;
+    padding: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
-}
-h1.topheading{
-    font-size: 24px; 
-}
-div.intro{
-    font-size: 16px; 
-    margin: 1px 1px 1px 1px;
-    width: 70%;
-}
-div.logo{
-    margin: 1px 1px 1px 1px;
-}
-div.ourform{
-    clear:both;
-    margin: 1px 10px 1px 20px;
-    width: 100%;
-}
-div.fieldtitle{
-    clear:both;
-    float:left;
-    font-size: 16px; 
-    margin: 20px 1px 1px 1px;
-    width: 100%;
-}
-div.inputfield{
-    margin-left:20px; 
-    clear:both; 
-    float:left
+    line-height: 1.4;
+    color: #000;
+    background-color: #fff;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-div.extraPersonButton{
-    margin-top:20px;
-    clear:both;
-    float:left;
-}
-div.extraPersonInput{
-    float:left;
-    clear:both;
-}
-div.extraPersonField{
-    margin-top:20px;
-    float:left;
-}
-div.visitor{
-    margin-top:20px;
-    width: 200px;
-    float:left;
+h1.topheading {
+    font-size: 24px;
+    margin: 8px 0 12px 0;
 }
 
-input {
+div.logo {
+    margin: 0 0 16px 0;
+    text-align: center;
+}
+
+div.logo img {
+    max-width: 160px;
+    height: auto;
+    display: inline-block;
+}
+
+div.intro {
+    margin: 0 0 16px 0;
+}
+
+div.intro p {
+    margin: 0 0 8px 0;
+}
+
+div.ourform {
+    clear: both;
+}
+
+/* Form field wrappers */
+div.fieldtitle {
+    clear: both;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0 8px 0;
+}
+
+div.inputfield {
+    clear: both;
+    width: 100%;
+}
+
+/* Text inputs fill their container and are easy to tap */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    max-width: 100%;
     font-size: 16px;
+    padding: 12px 14px;
+    margin: 0;
+    border: 1px solid #999;
+    border-radius: 8px;
+    background-color: #fff;
 }
-p{
+
+textarea {
+    resize: vertical;
+    min-height: 64px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+
+/* Additional person fields */
+div.extraPersonButton {
+    margin-top: 16px;
+    clear: both;
+}
+
+div.extraPersonInput {
+    clear: both;
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+div.extraPersonField {
+    margin-top: 12px;
+    width: 100%;
+}
+
+div.extraPersonField label {
+    display: block;
     font-size: 16px;
+    margin-bottom: 4px;
 }
-label{
-    font-size: 16px;
-    margin-top:20px;
+
+div.extraPersonField input {
+    width: 100%;
 }
-td{
-    font-size: 16px;
+
+/* Visit reason checkboxes */
+div.visitreasoncheckbox {
+    margin: 8px 0;
 }
-input[type="checkbox"] {
-    transform: scale(1);
+
+div.visitreasoncheckbox label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    padding: 6px 0;
+    cursor: pointer;
 }
+
+/* Enlarge checkboxes and radios for touch targets */
+input[type="checkbox"],
 input[type="radio"] {
-    transform: scale(1);
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin: 0;
 }
+
+/* Waiver radio row */
+div.inputfield label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+/* Buttons */
+input[type="submit"],
+input[type="button"] {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
 input[type="submit"] {
-    background-color: blue;
-    color:white;
-    width:200px;
+    background-color: #1e88e5;
+    color: #fff;
+    width: 100%;
+    max-width: 100%;
     border-radius: 12px;
-    height: 50px;
-}
-#waiverbuttonno {            
-    margin-left: 40px; 
-    font-size: 20px;
-}
-#addAPerson{
-    background-color:teal;
-    color:white;
-    border-radius: 20px;
+    height: 56px;
+    font-weight: 700;
+    margin: 24px 0 8px 0;
 }
 
-/* iPhone (portrait and landscape) ----------- */
-
-@media screen and (max-device-width: 600px) {
-    body {
-        width: auto;
-        margin: 1px 10px 1px 10px;
-        font-size: 50px;
-    }
-    div.pagetopdiv{
-        width: 100%;
-    }
-    h1.topheading{
-        font-size: 70px; 
-    }
-    div.intro{
-        clear:both;
-        font-size: 50px; 
-        width: 100%;
-    }
-    div.ourform{
-        font-size: 50px; 
-    }
-    div.fieldtitle{
-        font-size: 50px; 
-    }
-    div.visitreasoncheckbox{
-        margin-top:20px;
-    }
-    div.extraPersonField{
-        margin-top:75px;
-    }
-    input {
-        font-size: 50px;
-    }
-    textarea {
-        font-size: 50px;
-    }
-    p{
-        font-size: 50px;
-    }
-    label{
-        font-size: 50px;
-    }
-    input[type="checkbox"] {
-        transform: scale(2);
-        font-size: 50px;
-        margin-left: 100px;
-    }            
-    input[type="radio"] {
-        transform: scale(2);
-        font-size: 50px;
-    }
-    #waiverbuttonno {            
-        margin-left: 200px; 
-    }
-    #addAPerson{
-        background-color:cornflowerblue;
-        color:white;
-    }
-    input[type="submit"] {
-        margin: 20px 1px 50px 1px;
-        width: 400px;
-        height: 150px;
-        font-size: 50px
-    }
+input[type="submit"]:active {
+    background-color: #1565c0;
 }
 
-/* samsung phones (portrait and landscape) ----------- */
-@media screen and (max-width: 600px) {
-    body {
-        width: auto;
-        margin: 1px 10px 1px 10px;
-        font-size: 50px;
-    }
-    div.pagetopdiv{
-        width: 100%;
-    }
-    h1.topheading{
-        font-size: 70px; 
-    }
-    div.intro{
-        clear:both;
-        font-size: 50px; 
-        width: 100%;
-    }
-    div.ourform{
-        font-size: 50px; 
-    }
-    div.fieldtitle{
-        font-size: 50px; 
-    }
-    div.visitreasoncheckbox{
-        margin-top:20px;
-    }
-    div.extraPersonField{
-        margin-top:75px;
-    }
-    input {
-        font-size: 50px;
-    }
-    textarea {
-        font-size: 50px;
-    }
-    p{
-        font-size: 50px;
-    }
-    label{
-        font-size: 50px;
-    }
-    input[type="checkbox"] {
-        transform: scale(2);
-        font-size: 50px;
-        margin-left: 100px;
-    }            
-    input[type="radio"] {
-        transform: scale(2);
-        font-size: 50px;
-    }
-    #waiverbuttonno {            
-        margin-left: 200px; 
-    }
-    #addAPerson{
-        background-color:green;
-        color:white;
-    }
-    input[type="submit"] {
-        margin: 20px 1px 50px 1px;
-        width: 400px;
-        height: 150px;
-        font-size: 50px
-    }
+#addAPerson {
+    background-color: teal;
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 20px;
+    height: auto;
+    min-height: 48px;
+}
+
+#addAPerson:active {
+    background-color: #005050;
+}
+
+#waiverbuttonno {
+    margin-left: 0;
+}
+
+p {
+    font-size: 16px;
+}
+
+label {
+    font-size: 16px;
+}
+
+td {
+    font-size: 16px;
 }
